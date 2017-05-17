@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shanyun Gao | Contact</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/theme/css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="Shanyun Gao" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Blogs</a>
+                </li>
+                <li><a href="/pages/about.html">About</a></li>
+                <li class="selected"><a href="/pages/contact.html">Contact</a></li>
+                <li><a href="/pages/photos.html">Photos</a></li>
+            </ul>
+        </nav>
+        <div class="header_box">
+            <h1><a href="/">Shanyun Gao</a></h1>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">
+            <div class="page">
+                <h1>Contact</h1>
+                <p>You can find my email on my <a class="reference external" href="http://www.linkedin.com/in/shanyungao/">LinkedIn profile</a>.</p>
+<p>Alternatively, run the Python code.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">suedolink</span> <span class="o">=</span> <span class="s1">&#39;ftp://mail.shanyungreat.com&#39;</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;.*\/+(\w+)\.(\w+)([g]\w+)(\.\w+)&#39;</span><span class="p">,</span> <span class="n">suedolink</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span>
+        <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;gau@&#39;</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
+        <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+                <span class="p">)</span>
+</pre></div>
+
+            </div>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
