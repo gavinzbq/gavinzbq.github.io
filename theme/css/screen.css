@@ -103,6 +103,18 @@ blockquote {
     border-left: 1px solid #EEE;
 }
 
+/*
+.date {
+    color: #CCC;
+    float: left;
+    clear: both;
+    width: 130px;
+    font-size: 1.5em;
+    line-height: 1em;
+    margin: 1em 20px 1em 0;
+}
+*/
+
 .date {
     color: #CCC;
     float: left;
@@ -232,6 +244,7 @@ form.inline_edit {
 }
 
 nav ul {
+    font-size: 1em;
     float: right;
     list-style: none;
     margin: 0 0 0 3em;
@@ -340,3 +353,17 @@ footer p { margin: 0; }
 .right { float: right; }
 
 .clear { clear: both; }
+
+.statement {
+    float: right;
+    width: 760px;
+    margin-top: 3em;
+
+}
+
+figure figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    font-style: italic;
+    color: #BBB;
+}
