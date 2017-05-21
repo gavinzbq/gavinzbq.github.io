@@ -255,7 +255,8 @@ nav li {
 }
 nav a {
     display: block;
-    padding: 4.5em 10px 10px 10px;
+    /* padding: 4.5em 10px 10px 10px; */
+    padding: 7em 11px 11px 11px;
 }
 nav a:hover {
     background-color: #d3d3d3;
@@ -267,8 +268,15 @@ nav li.selected a {
 }
 
 header .header_box {
-    padding-top: 4.5em;
+    /* padding-top: 4.5em; */
+    padding-top: 1em;
 }
+
+header .header_box img {
+    float: left;
+    width: 150px;
+}
+
 header h1 {
     font-size: 1.5em;
     line-height: 1em;
