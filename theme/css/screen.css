@@ -256,7 +256,7 @@ nav li {
 nav a {
     display: block;
     /* padding: 4.5em 10px 10px 10px; */
-    padding: 7em 11px 11px 11px;
+    padding: 8em 11px 11px 11px;
 }
 nav a:hover {
     background-color: #d3d3d3;
@@ -274,7 +274,7 @@ header .header_box {
 
 header .header_box img {
     float: left;
-    width: 150px;
+    width: 180px;
 }
 
 header h1 {
