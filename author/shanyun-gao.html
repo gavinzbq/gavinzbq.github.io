@@ -9,12 +9,25 @@
     <link rel="stylesheet" href="/theme/css/screen.css" type="text/css" />
     <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
     <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+	<link rel="stylesheet" href="/theme/css/magnific-popup.css" type="text/css" />
+    
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="Shanyun Gao" />
 </head>
 <body>
     <header>
+
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+
         <nav>
             <ul>
 
@@ -37,6 +50,7 @@
         </nav>
 
 
+        <!--
         <div class="header_box">
             <img alt="image" src="/theme/images/IMG_0071.JPG" >
 
@@ -44,20 +58,23 @@
 
             <h1><a href="/">SHANYUN GAO</a></h1>
         </div>
+        //-->
 
     <div class="statement">
         <p><strong>
-        Welcome to my (public) journal. This page is dedicated to my random thoughts and
-        musings on a daily basis. Feel free to read and enjoy. Hopefully your time would 
-        be well spent. Peace.
+            Welcome to my personal website. The site servers as a place to
+            publish things like my blogs, photo galleries, works and projects.
+            Feel free to enjoy and contact me as you wish.
     </strong></p>
     <figure>
-    <img alt="image" src="/theme/images/IMG_0100.JPG" />
+    <img alt="image" src="/theme/images/IMG_0103.JPG" />
     <figcaption>Photo credit to LWX</figcaption>
     </figure>
     </div>
     </br>
     <div class="clear"></div>
+
+        <div class="clear"></div>
 
     </header>
 
@@ -202,5 +219,35 @@ is not worth knowing. -- Alan Perlis</p>
         </div>
         <div class="clear"></div>
     </div>
+    
+
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="/theme/js/jquery.magnific-popup.js"></script>
+    <script>
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [1,2]
+        },
+        image: {
+            titleSrc: function(item) {
+                if (item.el.attr('caption') && item.el.attr('exif')) {
+                    return (item.el.attr('caption').replace(/\\n/g, '<br />') +
+                        '<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
+                }
+            return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+        } }
+    });
+    </script>
+    
 </body>
 </html>

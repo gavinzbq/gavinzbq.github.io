@@ -256,7 +256,7 @@ nav li {
 nav a {
     display: block;
     /* padding: 4.5em 10px 10px 10px; */
-    padding: 7.5em 11px 11px 11px;
+    padding: 8.5em 11px 11px 11px;
 }
 nav a:hover {
     background-color: #d3d3d3;
@@ -269,12 +269,13 @@ nav li.selected a {
 
 header .header_box {
     /* padding-top: 4.5em; */
+    float: left;
     padding-top: 1em;
 }
 
 header .header_box img {
-    float: left;
     width: 180px;
+    padding-bottom: 0.5em;
 }
 
 header h1 {
@@ -378,5 +379,5 @@ figure figcaption {
 
 .gallery img {
     display: inline-block;
-    margin: 1em;
+    margin: 1em 1.2em;
 }

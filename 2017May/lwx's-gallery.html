@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="/theme/css/screen.css" type="text/css" />
     <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
     <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+	<link rel="stylesheet" href="/theme/css/magnific-popup.css" type="text/css" />
+    
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
     <meta name="author" content="Shanyun Gao" />
@@ -17,6 +23,13 @@
 </head>
 <body>
     <header>
+
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+
         <nav>
             <ul>
                 
@@ -37,6 +50,7 @@
         </nav>
 
 
+        <!--
         <div class="header_box">
             <img alt="image" src="/theme/images/IMG_0071.JPG" >
 
@@ -44,7 +58,10 @@
 
             <h1><a href="/">SHANYUN GAO</a></h1>
         </div>
+        //-->
 
+
+        <div class="clear"></div>
 
     </header>
 
@@ -140,5 +157,35 @@
         </div>
         <div class="clear"></div>
     </div>
+    
+
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="/theme/js/jquery.magnific-popup.js"></script>
+    <script>
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [1,2]
+        },
+        image: {
+            titleSrc: function(item) {
+                if (item.el.attr('caption') && item.el.attr('exif')) {
+                    return (item.el.attr('caption').replace(/\\n/g, '<br />') +
+                        '<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
+                }
+            return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+        } }
+    });
+    </script>
+    
 </body>
 </html>
