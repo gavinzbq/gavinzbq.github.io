@@ -100,7 +100,8 @@ img, p, .post > .highlight, .highlighttable, h4, h5, h6 {
 blockquote {
     margin: 1.5em 1.5em 1.5em .75em;
     padding-left: .75em;
-    border-left: 1px solid #EEE;
+    /* border-left: 1px solid #EEE; */
+    border-left: 0.10989011% solid #EEE;
 }
 
 /*
@@ -119,10 +120,12 @@ blockquote {
     color: #CCC;
     float: left;
     clear: both;
-    width: 130px;
+    /* width: 130px; */
+    width: 14.2857143%;
     font-size: 1.5em;
     line-height: 1em;
-    margin: 0 20px 1em 0;
+    /* margin: 0 20px 1em 0; */
+    margin: 0 2.1978022% 1em 0;
 }
 
 .info {
@@ -139,8 +142,8 @@ blockquote {
     color: #FFF;
     display: inline-block;
     padding: 0 .3em;
-    border: 1px transparent solid;
-    border-radius: 5px;
+    border: 0.10989011% transparent solid;
+    border-radius: 0.54945055%;
     margin: 0 0 0.3em 0;
 }
 .info a.tags:hover {
@@ -148,22 +151,26 @@ blockquote {
     color: inherit;
 }
 .info a.tags.selected {
-    border: 1px #999 solid;
+    /* border: 1px #999 solid; */
+    border: 0.10989011% #999 solid;
 }
 
 .post {
-    margin: 0 0 4.5em 150px;
+    /* margin: 0 0 4.5em 150px; */
+    margin: 0 0 4.5em 16.4835165%;
 }
 .post.archives {
     margin-bottom: 1.5em;
-    margin-left: 160px;
+    /* margin-left: 160px; */
+    margin-left: 17.5824176%;
 }
 .post p {
     text-align: justify;
 }
 
 .page {
-    margin: 0 90px;
+    /* margin: 0 90px; */
+    margin: 0 9.89010989%;
 }
 
 .highlight {
@@ -256,7 +263,8 @@ nav li {
 nav a {
     display: block;
     /* padding: 4.5em 10px 10px 10px; */
-    padding: 8.5em 11px 11px 11px;
+    /* padding: 8.5em 11px 11px 11px; */
+    padding: 8.5em 0.6875em 0.6875em 0.6875em;
 }
 nav a:hover {
     background-color: #d3d3d3;
@@ -269,12 +277,13 @@ nav li.selected a {
 
 header .header_box {
     /* padding-top: 4.5em; */
+    width: 19.7802198%;
     float: left;
     padding-top: 1em;
 }
 
 header .header_box img {
-    width: 180px;
+    /* width: 180px; */
     padding-bottom: 0.5em;
 }
 
@@ -299,7 +308,8 @@ header h2 {
     margin: 4.5em 0 3em;
     background-color: #F9F9F9;
     color: #444;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    border-radius: 0.54945055%;
 }
 .pages a.next_page {
     float: right;
@@ -365,7 +375,8 @@ footer p { margin: 0; }
 
 .statement {
     float: right;
-    width: 760px;
+    /* width: 760px; */
+    width: 83.5164835%;
     margin-top: 3em;
 
 }
@@ -380,4 +391,35 @@ figure figcaption {
 .gallery img {
     display: inline-block;
     margin: 1.2em 1.5em;
+}
+
+@media screen and (max-width: 480px){
+    body {
+        font-size: 8px;
+    }
+    header, #wrapper {
+        padding: 0 2px;
+        min-width: 180px;
+        max-width: 375px;
+        margin: auto;
+    }
+    .gallery img {
+        box-shadow: None;
+        max-width: 25%;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 1024px) {
+    body {
+        font-size: 12px;
+    }
+    header, #wrapper {
+        padding: 0 8.4px;
+        min-width: 400px;
+        max-width: 760;
+        margin: auto;
+    }
+    .gallery img {
+        max-width: 25%;
+    }
 }
