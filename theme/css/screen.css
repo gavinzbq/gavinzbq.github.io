@@ -277,13 +277,16 @@ nav li.selected a {
 
 header .header_box {
     /* padding-top: 4.5em; */
-    width: 19.7802198%;
+    width: 20%;
     float: left;
     padding-top: 1em;
 }
 
 header .header_box img {
     /* width: 180px; */
+    display: block;
+    margin: auto;
+    width: 95%;
     padding-bottom: 0.5em;
 }
 
