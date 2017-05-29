@@ -403,6 +403,10 @@ figure figcaption {
         max-width: 375px;
         margin: auto;
     }
+
+    header .header_box {
+        text-align: center;
+    }
     .gallery img {
         box-shadow: None;
         max-width: 25%;
@@ -418,6 +422,10 @@ figure figcaption {
         min-width: 400px;
         max-width: 760;
         margin: auto;
+    }
+
+    header .header_box {
+        text-align: center;
     }
     .gallery img {
         max-width: 25%;
