@@ -418,7 +418,7 @@ figure figcaption {
     }
     .gallery img {
         box-shadow: None;
-        max-width: 25%;
+        max-width: 24%;
     }
 
     .post pre, .page pre {
@@ -445,7 +445,7 @@ figure figcaption {
         text-align: center;
     }
     .gallery img {
-        max-width: 25%;
+        max-width: 24%;
     }
 
     .post pre, .page pre {
