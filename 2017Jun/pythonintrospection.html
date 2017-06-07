@@ -82,10 +82,10 @@
                 
 
                 <p><strong>Introspection</strong> is code looking at other modules and functions in memory as
-objects, getting information about them and manipulating them <a class="footnote-reference" href="#id2" id="id1">[1]</a>. The list
+objects, getting information about them and manipulating them <a class="footnote-reference" href="#id2" id="id1">[*]</a>. The list
 below are functions I found useful when debugging code.</p>
 <ul>
-<li><p class="first">The <strong>type</strong> Function</p>
+<li><p class="first">The <cite>type</cite> Function</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;int&#39;</span><span class="o">&gt;</span>
@@ -101,10 +101,10 @@ below are functions I found useful when debugging code.</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
 </pre></div>
-<p><strong>type</strong> function takes anything and returns its datatype -- integers, strings, lists, dictionaries, classes, functions, modules.</p>
+<p><cite>type</cite> function takes anything and returns its datatype -- integers, strings, lists, dictionaries, classes, functions, modules.</p>
 </blockquote>
 </li>
-<li><p class="first">The <strong>dir</strong> Function</p>
+<li><p class="first">The <cite>dir</cite> Function</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
@@ -113,7 +113,7 @@ below are functions I found useful when debugging code.</p>
 <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">]</span>
 </pre></div>
 </blockquote>
-<p><strong>dir(li)</strong> returns a list of all the methods of a list. The returned list
+<p>Note that <cite>dir(li)</cite> returns a list of all the methods of a list. The returned list
 contains the names of the methods as strings, not the methods themselves.</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">types</span>
@@ -124,11 +124,11 @@ contains the names of the methods as strings, not the methods themselves.</p>
 <span class="s1">&#39;__package__&#39;</span><span class="p">]</span>
 </pre></div>
 </blockquote>
-<p><strong>types</strong> is a module, <strong>dir(types)</strong> returns a list including built-in
-attributes like <strong>__all__</strong>, and user-defined methods such as
-<strong>BooleanType</strong>.</p>
+<p><cite>types</cite> is a module, <cite>dir(types)</cite> returns a list including built-in
+attributes like <cite>__all__</cite>, and user-defined methods such as
+<cite>BooleanType</cite>.</p>
 </li>
-<li><p class="first">The <strong>callable</strong> Function</p>
+<li><p class="first">The <cite>callable</cite> Function</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">types</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">callable</span><span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">)</span>
@@ -147,13 +147,13 @@ attributes like <strong>__all__</strong>, and user-defined methods such as
 <span class="bp">False</span>
 </pre></div>
 </blockquote>
-<p>the <strong>callable</strong> function takes any object and returns <strong>True</strong> if the object
-can be called, or <strong>False</strong> otherwise. Callable objects includes functions,
-class methods and class themselves. Therefore, <strong>types.BooleanType()</strong>
-returns <strong>False</strong> if the input is empty, zero or <strong>None</strong>, and returns
-<strong>True</strong> otherwise.</p>
+<p>The <cite>callable</cite> function takes any object and returns <cite>True</cite> if the object
+can be called, or <cite>False</cite> otherwise. Callable objects includes functions,
+class methods and class themselves. Therefore, <cite>types.BooleanType()</cite>
+returns <cite>False</cite> if the input is empty, zero or <cite>None</cite>, and returns
+<cite>True</cite> otherwise.</p>
 </li>
-<li><p class="first">The <strong>getattr</strong> Function</p>
+<li><p class="first">The <cite>getattr</cite> Function</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">li</span><span class="o">.</span><span class="n">pop</span>
@@ -162,9 +162,9 @@ returns <strong>False</strong> if the input is empty, zero or <strong>None</stro
 <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">pop</span> <span class="n">of</span> <span class="nb">list</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10fde9170</span><span class="o">&gt;</span>
 </pre></div>
 </blockquote>
-<p>We can get a reference to a function by using the <strong>getattr</strong> function. Note
-that <strong>li.pop</strong> is not calling the <strong>pop</strong> method, while <strong>li.pop()</strong> is.
-When using <strong>getattr</strong>, the method name (<strong>pop</strong>) is specified as as tring
+<p>We can get a reference to a function by using the <cite>getattr</cite> function. Note
+that <cite>li.pop</cite> is not calling the <cite>pop</cite> method, while <cite>li.pop()</cite> is.
+When using <cite>getattr</cite>, the method name (<cite>pop</cite>) is specified as as tring
 argument.</p>
 <blockquote>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">li</span><span class="p">,</span> <span class="s1">&#39;append&#39;</span><span class="p">)(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
@@ -172,8 +172,8 @@ argument.</p>
 <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">]</span>
 </pre></div>
 </blockquote>
-<p>Since the return value of <strong>getattr</strong> is the method, we can then call just as
-if we did <strong>li.append('o')</strong>. In fact, however, we did not call the function
+<p>Since the return value of <cite>getattr</cite> is the method, we can then call just as
+if we did <cite>li.append('o')</cite>. In fact, however, we did not call the function
 directly, instead we specified the function name as a string. Incredible
 isn't it.</p>
 </li>
@@ -181,7 +181,7 @@ isn't it.</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Pilgrim, M., 2009. <em>Dive Into Python</em>. Createspace.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[*]</a></td><td>Pilgrim, M., 2009. <em>Dive Into Python</em>. Createspace.</td></tr>
 </tbody>
 </table>
 
