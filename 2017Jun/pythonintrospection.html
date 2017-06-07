@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SHANYUN GAO | Python Tricks -- Introspection</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/theme/css/screen.css"
+    type="text/css" media="screen" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="Shanyun Gao" />
+
+    <meta name="keywords" content="Python,Programming" />
+</head>
+<body>
+    <header>
+
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+
+        <nav>
+            <ul>
+                
+                <li>
+                    <a href="/"><strong>HOME</strong></a>
+                </li>
+
+
+                <li><a
+                                                href="/category/blog.html"><strong>BLOGS</strong></a></li>
+                <li><a
+                                                href="/category/gallery.html"><strong>GALLERY</strong></a></li>
+
+                <li><a href="/pages/about.html"><strong>ABOUT</strong></a></li>
+                <li><a href="/pages/contact.html"><strong>CONTACT</strong></a></li>
+
+            </ul>
+        </nav>
+
+
+        <!--
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <div class="clear"></div>
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+        //-->
+
+
+        <div class="clear"></div>
+
+    </header>
+
+    <div id="wrapper">
+        <div id="content">
+<!-- Display the associated image before the article content -->
+<div class="entry-content">
+</div>
+
+            <h4 class="date">Jun 01, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/2017Jun/pythonintrospection.html" rel="bookmark" title="Permanent Link to &quot;Python Tricks -- Introspection&quot;">Python Tricks -- Introspection</a>
+                </h2>
+
+                
+                
+
+                <p><strong>Introspection</strong> is code looking at other modules and functions in memory as
+objects, getting information about them and manipulating them <a class="footnote-reference" href="#id2" id="id1">[1]</a>. The list
+below are functions I found useful when debugging code.</p>
+<ul>
+<li><p class="first">The <strong>type</strong> Function</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;int&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;list&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">di</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">di</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;dict&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
+</pre></div>
+<p><strong>type</strong> function takes anything and returns its datatype -- integers, strings, lists, dictionaries, classes, functions, modules.</p>
+</blockquote>
+</li>
+<li><p class="first">The <strong>dir</strong> Function</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">]</span>
+</pre></div>
+</blockquote>
+<p><strong>dir(li)</strong> returns a list of all the methods of a list. The returned list
+contains the names of the methods as strings, not the methods themselves.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">types</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;BooleanType&#39;</span><span class="p">,</span> <span class="s1">&#39;BufferType&#39;</span><span class="p">,</span> <span class="s1">&#39;BuiltinFunctionType&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="s1">&#39;__all__&#39;</span><span class="p">,</span> <span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__file__&#39;</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__package__&#39;</span><span class="p">]</span>
+</pre></div>
+</blockquote>
+<p><strong>types</strong> is a module, <strong>dir(types)</strong> returns a list including built-in
+attributes like <strong>__all__</strong>, and user-defined methods such as
+<strong>BooleanType</strong>.</p>
+</li>
+<li><p class="first">The <strong>callable</strong> Function</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">types</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">callable</span><span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">callable</span><span class="p">(</span><span class="n">types</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">types</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">()</span>
+<span class="bp">False</span>
+</pre></div>
+</blockquote>
+<p>the <strong>callable</strong> function takes any object and returns <strong>True</strong> if the object
+can be called, or <strong>False</strong> otherwise. Callable objects includes functions,
+class methods and class themselves. Therefore, <strong>types.BooleanType()</strong>
+returns <strong>False</strong> if the input is empty, zero or <strong>None</strong>, and returns
+<strong>True</strong> otherwise.</p>
+</li>
+<li><p class="first">The <strong>getattr</strong> Function</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">li</span><span class="o">.</span><span class="n">pop</span>
+<span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">pop</span> <span class="n">of</span> <span class="nb">list</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10fde9170</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">li</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">pop</span> <span class="n">of</span> <span class="nb">list</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10fde9170</span><span class="o">&gt;</span>
+</pre></div>
+</blockquote>
+<p>We can get a reference to a function by using the <strong>getattr</strong> function. Note
+that <strong>li.pop</strong> is not calling the <strong>pop</strong> method, while <strong>li.pop()</strong> is.
+When using <strong>getattr</strong>, the method name (<strong>pop</strong>) is specified as as tring
+argument.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">li</span><span class="p">,</span> <span class="s1">&#39;append&#39;</span><span class="p">)(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">li</span>
+<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">]</span>
+</pre></div>
+</blockquote>
+<p>Since the return value of <strong>getattr</strong> is the method, we can then call just as
+if we did <strong>li.append('o')</strong>. In fact, however, we did not call the function
+directly, instead we specified the function name as a string. Incredible
+isn't it.</p>
+</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Pilgrim, M., 2009. <em>Dive Into Python</em>. Createspace.</td></tr>
+</tbody>
+</table>
+
+
+                
+                <!-- Add the gallery as the end of the article -->
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/2017Jun/pythonintrospection.html">posted at 17:43</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/blog.html" rel="tag">Blog</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/python.html" class="tags">Python</a>
+                    &nbsp;<a href="/tag/programming.html" class="tags">Programming</a>
+                </div>
+
+        <!--
+        //-->
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+</body>
+</html>
