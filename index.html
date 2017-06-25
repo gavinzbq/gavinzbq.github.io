@@ -14,6 +14,7 @@
     <!-- How to make the gallery lightbox 
     https://github.com/getpelican/pelican-plugins/tree/master/photos
     //-->
+	<link rel="stylesheet" href="/theme/css/magnific-popup.css" type="text/css" />
     
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
@@ -77,6 +78,60 @@
 
     <div id="wrapper">
         <div id="content">
+            <h4 class="date">Jun 25, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/2017Jun/color-film-in-denver.html" rel="bookmark" title="Permanent Link to &quot;COLOR FILM IN DENVER&quot;">COLOR FILM IN DENVER</a>
+                </h2>
+
+                
+                
+
+                
+
+                
+                <!-- Add the gallery as the end of the article -->
+                <div class="gallery">
+                        <!--
+                        <h1>Denver_201706</h1>
+                        //-->
+                            <!--
+                                <a href="/photos/denver_201706/p6030884.jpg" title="P6030884.jpg" exif="" caption="">
+                            //-->
+                                    <!-- img src="/photos/denver_201706/p6030884t.jpg" -->
+                                    <img src="/photos/thumb/square/Denver_201706/P6030884.jpg">
+                                </a>
+                            <!--
+                                <a href="/photos/denver_201706/p6030885.jpg" title="P6030885.jpg" exif="" caption="">
+                            //-->
+                                    <!-- img src="/photos/denver_201706/p6030885t.jpg" -->
+                                    <img src="/photos/thumb/square/Denver_201706/P6030885.jpg">
+                                </a>
+                            <!--
+                                <a href="/photos/denver_201706/p6030900.jpg" title="P6030900.jpg" exif="" caption="">
+                            //-->
+                                    <!-- img src="/photos/denver_201706/p6030900t.jpg" -->
+                                    <img src="/photos/thumb/square/Denver_201706/P6030900.jpg">
+                                </a>
+                </div>
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/2017Jun/color-film-in-denver.html">posted at 11:22</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/gallery.html" rel="tag">Gallery</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/photos.html" class="tags">Photos</a>
+                    &nbsp;<a href="/tag/denver.html" class="tags">Denver</a>
+                </div>
+
+        <!-- 
+		<a href="/2017Jun/color-film-in-denver.html#disqus_thread">ENTER GALLERY</a>
+        //-->
+        
+            </article>
+
             <h4 class="date">Jun 20, 2017</h4>
 
             <article class="post">
@@ -289,59 +344,6 @@
         
             </article>
 
-            <h4 class="date">May 22, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="/2017May/lwx's-gallery.html" rel="bookmark" title="Permanent Link to &quot;FILMS ORGANIZED, MALBEC&quot;">FILMS ORGANIZED, MALBEC</a>
-                </h2>
-
-                
-                
-
-                
-
-                
-                <!-- Add the gallery as the end of the article -->
-                <div class="gallery">
-                        <!--
-                        <h1>dark_landscape</h1>
-                        //-->
-                            <!--
-                                <a href="/photos/dark_landscape/be-quiet.jpg" title="BE-QUIET.JPG" exif="" caption="">
-                            //-->
-                                    <!-- img src="/photos/dark_landscape/be-quiett.jpg" -->
-                                    <img src="/photos/thumb/square/dark_landscape/BE-QUIET.JPG">
-                                </a>
-                            <!--
-                                <a href="/photos/dark_landscape/charlston-beech-1.jpg" title="CHARLSTON-BEECH-1.JPG" exif="" caption="">
-                            //-->
-                                    <!-- img src="/photos/dark_landscape/charlston-beech-1t.jpg" -->
-                                    <img src="/photos/thumb/square/dark_landscape/CHARLSTON-BEECH-1.JPG">
-                                </a>
-                            <!--
-                                <a href="/photos/dark_landscape/charlston-beech-2.jpg" title="CHARLSTON-BEECH-2.JPG" exif="" caption="">
-                            //-->
-                                    <!-- img src="/photos/dark_landscape/charlston-beech-2t.jpg" -->
-                                    <img src="/photos/thumb/square/dark_landscape/CHARLSTON-BEECH-2.JPG">
-                                </a>
-                </div>
-
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="/2017May/lwx's-gallery.html">posted at 23:13</a>
-                    &nbsp;&middot;&nbsp;<a href="/category/gallery.html" rel="tag">Gallery</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="/tag/photos.html" class="tags">Photos</a>
-                </div>
-
-        <!-- 
-		<a href="/2017May/lwx's-gallery.html#disqus_thread">ENTER GALLERY</a>
-        //-->
-        
-            </article>
-
 
                 <div class="clear"></div>
                 <div class="pages">
@@ -364,6 +366,30 @@
     <!-- How to make the gallery lightbox 
     https://github.com/getpelican/pelican-plugins/tree/master/photos
     //-->
+    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="/theme/js/jquery.magnific-popup.js"></script>
+    <script>
+    $('.gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [1,2]
+        },
+        image: {
+            titleSrc: function(item) {
+                if (item.el.attr('caption') && item.el.attr('exif')) {
+                    return (item.el.attr('caption').replace(/\\n/g, '<br />') +
+                        '<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
+                }
+            return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+        } }
+    });
+    </script>
     
 </body>
 </html>
