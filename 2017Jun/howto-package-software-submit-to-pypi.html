@@ -87,25 +87,42 @@
 <li>use cache by default for faster access while enable clear cache functionality.</li>
 </ul>
 <p>In this article I would like to conclude my experience with packaging Python project by making a curated list.</p>
-<p><strong>What is packaging all about?</strong></p>
-<p>I'll assume you had experience with <cite>pip</cite>. Read <a class="reference external" href="https://packaging.python.org/tutorials/distributing-packages/">Packaging and Distributing Projects</a> to understand the basics of how to configure and package Python projects.</p>
-<p><strong>I have never packaged a project.</strong></p>
+<div class="section" id="what-is-packaging-all-about">
+<h2>What is packaging all about?</h2>
+<p>Have you ever wondered a library or application can be installed by one single <cite>pip</cite> command?
+In short, we can get our favorite applications by <cite>pip install synonym</cite> is
+because <strong>synonym</strong> is indexed at Python Packaging Index (PyPI).</p>
+<p>The purpose of packaging is to distribute your work (code to be specific).
+You'll either want to create a library to be imported or a standalone application to be used by other developers.
+And you don't want people install your work by configure their development environment and install dependencies step by step. It's not very nice.</p>
+<p>Packaging is to generate a bundle which set up the environment automatically and correctly.
+That is what packaging is all about.</p>
+<p>For details, please <strong>do</strong> read <a class="reference external" href="https://packaging.python.org/tutorials/distributing-packages/">Packaging and Distributing Projects</a> to understand the basics of how to configure and package Python projects.</p>
+</div>
+<div class="section" id="i-have-never-packaged-a-project">
+<h2>I have never packaged a project.</h2>
+<p>All right, I want to share my code. And what to do next?</p>
 <p>Don't DIY. Unless you enjoy manually typing <cite>setup.py</cite>.
 I use <a class="reference external" href="https://github.com/audreyr/cookiecutter">cookiecutter</a> and you may consider it as well.
 It generates project templates which can be customized later.
 For Python projects, use the cookiecutter template called <a class="reference external" href="https://github.com/audreyr/cookiecutter-pypackage">pypackage</a>. Follow the <a class="reference external" href="http://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html">tutorial</a> and you will be square.
 Do create accounts at <a class="reference external" href="https://testpypi.python.org/pypi">testpypi</a> and <a class="reference external" href="https://pypi.python.org/pypi">pypi</a> beforehand.</p>
-<p><strong>Release on PyPI to make your code pipable.</strong></p>
+</div>
+<div class="section" id="release-on-pypi-to-make-your-code-pipable">
+<h2>Release on PyPI to make your code pipable.</h2>
 <p><a class="reference external" href="http://peterdowns.com/posts/first-time-with-pypi.html">How to submit a package to PyPI</a> is a great post albeit it's a little bit outdated.
 As a consequence of PyPI migrating to PyPI.org, the <cite>Creat .pypirc configuration file</cite> session needs to be altered.
 Refer to this <a class="reference external" href="https://packaging.python.org/guides/migrating-to-pypi-org/#uploading">instruction</a>.</p>
 <p>Now you should be able to see your release on PyPI and pip it. Congratulations!</p>
-<p><strong>Releases after the first one?</strong></p>
+</div>
+<div class="section" id="releases-after-the-first-one">
+<h2>Releases after the first one?</h2>
 <p><a class="reference external" href="http://sherifsoliman.com/2016/09/30/Python-package-with-GitHub-PyPI/#do-you-have-a-setuppy">This article</a> provided the workflow and checklist before releasing a new version.
 I would recommend doing it once, then consider a automation tool such as <a class="reference external" href="https://github.com/peritus/bumpversion">Bumpversion</a>. Use DRY, avoid DIY when things get tedious.</p>
 <p>Happy sharing code!</p>
 <p>Thanks for making the world a better place.</p>
 <!-- Links -->
+</div>
 
 
                 
