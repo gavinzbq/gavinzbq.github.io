@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SHANYUN GAO | HOWTO: Package Software &amp; Submit to PyPI</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/theme/css/screen.css"
+    type="text/css" media="screen" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="Shanyun Gao" />
+
+    <meta name="keywords" content="Python,PyPI,Packaging" />
+</head>
+<body>
+    <header>
+
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+
+        <nav>
+            <ul>
+                
+                <li>
+                    <a href="/"><strong>HOME</strong></a>
+                </li>
+
+
+                <li><a
+                                                href="/category/blog.html"><strong>BLOGS</strong></a></li>
+                <li><a
+                                                href="/category/gallery.html"><strong>GALLERY</strong></a></li>
+
+                <li><a href="/pages/about.html"><strong>ABOUT</strong></a></li>
+                <li><a href="/pages/contact.html"><strong>CONTACT</strong></a></li>
+
+            </ul>
+        </nav>
+
+
+        <!--
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <div class="clear"></div>
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+        //-->
+
+
+        <div class="clear"></div>
+
+    </header>
+
+    <div id="wrapper">
+        <div id="content">
+<!-- Display the associated image before the article content -->
+<div class="entry-content">
+</div>
+
+            <h4 class="date">Jun 28, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/2017Jun/howto-package-software-submit-to-pypi.html" rel="bookmark" title="Permanent Link to &quot;HOWTO: Package Software &amp; Submit to PyPI&quot;">HOWTO: Package Software &amp; Submit to PyPI</a>
+                </h2>
+
+                
+                
+
+                <p><strong>synonym-0.1.2</strong> has just been released. Two features are added:</p>
+<ul class="simple">
+<li>enable / disable colorized output.</li>
+<li>use cache by default for faster access while enable clear cache functionality.</li>
+</ul>
+<p>In this article I would like to conclude my experience with packaging Python project by making a curated list.</p>
+<p><strong>What is packaging all about?</strong></p>
+<p>I'll assume you had experience with <cite>pip</cite>. Read <a class="reference external" href="https://packaging.python.org/tutorials/distributing-packages/">Packaging and Distributing Projects</a> to understand the basics of how to configure and package Python projects.</p>
+<p><strong>I have never packaged a project.</strong></p>
+<p>Don't DIY. Unless you enjoy manually typing <cite>setup.py</cite>.
+I use <a class="reference external" href="https://github.com/audreyr/cookiecutter">cookiecutter</a> and you may consider it as well.
+It generates project templates which can be customized later.
+For Python projects, use the cookiecutter template called <a class="reference external" href="https://github.com/audreyr/cookiecutter-pypackage">pypackage</a>. Follow the <a class="reference external" href="http://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html">tutorial</a> and you will be square.
+Do create accounts at <a class="reference external" href="https://testpypi.python.org/pypi">testpypi</a> and <a class="reference external" href="https://pypi.python.org/pypi">pypi</a> beforehand.</p>
+<p><strong>Release on PyPI to make your code pipable.</strong></p>
+<p><a class="reference external" href="http://peterdowns.com/posts/first-time-with-pypi.html">How to submit a package to PyPI</a> is a great post albeit it's a little bit outdated.
+As a consequence of PyPI migrating to PyPI.org, the <cite>Creat .pypirc configuration file</cite> session needs to be altered.
+Refer to this <a class="reference external" href="https://packaging.python.org/guides/migrating-to-pypi-org/#uploading">instruction</a>.</p>
+<p>Now you should be able to see your release on PyPI and pip it. Congratulations!</p>
+<p><strong>Releases after the first one?</strong></p>
+<p><a class="reference external" href="http://sherifsoliman.com/2016/09/30/Python-package-with-GitHub-PyPI/#do-you-have-a-setuppy">This article</a> provided the workflow and checklist before releasing a new version.
+I would recommend doing it once, then consider a automation tool such as <a class="reference external" href="https://github.com/peritus/bumpversion">Bumpversion</a>. Use DRY, avoid DIY when things get tedious.</p>
+<p>Happy sharing code!</p>
+<p>Thanks for making the world a better place.</p>
+<!-- Links -->
+
+
+                
+                <!-- Add the gallery as the end of the article -->
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/2017Jun/howto-package-software-submit-to-pypi.html">posted at 23:11</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/blog.html" rel="tag">Blog</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/python.html" class="tags">Python</a>
+                    &nbsp;<a href="/tag/pypi.html" class="tags">PyPI</a>
+                    &nbsp;<a href="/tag/packaging.html" class="tags">Packaging</a>
+                </div>
+
+        <!--
+        //-->
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+</body>
+</html>
