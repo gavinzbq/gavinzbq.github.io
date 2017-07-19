@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SHANYUN GAO | Powerful Powerful Descriptors of Python</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/theme/css/screen.css"
+    type="text/css" media="screen" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="Shanyun Gao" />
+
+    <meta name="keywords" content="Python,Descriptors,Meta-Programming" />
+</head>
+<body>
+    <header>
+
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+
+        <nav>
+            <ul>
+                
+                <li>
+                    <a href="/"><strong>HOME</strong></a>
+                </li>
+
+
+                <li><a
+                                                href="/category/blog.html"><strong>BLOGS</strong></a></li>
+                <li><a
+                                                href="/category/gallery.html"><strong>GALLERY</strong></a></li>
+
+                <li><a href="/pages/about.html"><strong>ABOUT</strong></a></li>
+                <li><a href="/pages/contact.html"><strong>CONTACT</strong></a></li>
+
+            </ul>
+        </nav>
+
+
+        <!--
+        <div class="header_box">
+            <img alt="image" src="/theme/images/IMG_0071.JPG" >
+
+            <div class="clear"></div>
+
+            <h1><a href="/">SHANYUN GAO</a></h1>
+        </div>
+        //-->
+
+
+        <div class="clear"></div>
+
+    </header>
+
+    <div id="wrapper">
+        <div id="content">
+<!-- Display the associated image before the article content -->
+<div class="entry-content">
+</div>
+
+            <h4 class="date">Jul 07, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/2017Jul/powerful-powerful-descriptors-of-python.html" rel="bookmark" title="Permanent Link to &quot;Powerful Powerful Descriptors of Python&quot;">Powerful Powerful Descriptors of Python</a>
+                </h2>
+
+                
+                
+
+                <p>Descriptor is a very powerful tool. Its protocol is the mechanism behind <em>properties</em>,
+<em>methods</em>, <em>static methods</em>, <em>class methods</em>.
+In short, learning descriptor helps get into the guts of Python,
+develop a deeper understanding of how Python works and
+an appreciation for the elegance of its design.
+For example, if you have ever wondered how <cite>&#64;property</cite> works under the hood,
+stick with me.</p>
+<p>On the other hand, descriptors are cool technique if you have attributes of
+the same behaviors,
+across many different name and different classes. For example, attributes
+<cite>first_name</cite> and <cite>last_name</cite> have the same behavior. We know that code repetition,
+is bad practice. And if you care to find an elegant solution, stick with me.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># repeating code for *first_name* and *last_name*, bad!</span>
+<span class="k">class</span> <span class="nc">Human</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">first_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span>
+
+    <span class="nd">@first_name.setter</span>
+    <span class="k">def</span> <span class="nf">first_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected a string&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_name</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_name</span>
+
+    <span class="nd">@last_name.setter</span>
+    <span class="k">def</span> <span class="nf">last_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected a string&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_name</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</blockquote>
+<p>Let's get into descriptor.</p>
+<div class="section" id="definition">
+<h2>Definition</h2>
+<p>Descriptor <a class="footnote-reference" href="#id2" id="id1">[*]</a> is defined as an object attribute with &quot;binding behavior&quot;, one whose
+attribute access has been overridden by methods in the descriptor protocol: <cite>__get__()</cite>,
+<cite>__set__()</cite>, <cite>__delete__()</cite>. If any of those methods are defined as an object,
+it is said to be a descriptor.</p>
+</div>
+<div class="section" id="descriptor-protocol">
+<h2>Descriptor Protocol</h2>
+<p><cite>descr.__get__(self, obj, cls=None) --&gt; value</cite></p>
+<p><cite>descr.__set__(self, obj, value) --&gt; None</cite></p>
+<p><cite>descr.__delete__(self, obj) --&gt; None</cite></p>
+<p>Define any of these methods and an objeect is considered a descriptor and can
+override default behavior upon being looked up as an attribute.</p>
+</div>
+<div class="section" id="data-descriptor-and-non-data-descriptor">
+<h2>Data Descriptor and Non-Data Descriptor</h2>
+<p>If an object defines both <cite>__get__()</cite> and <cite>__set__()</cite>, it is considered a <strong>data
+descriptor</strong>.</p>
+<p>Descriptors that only define <cite>__get__()</cite> are called <strong>non-data descriptors</strong>.</p>
+<p>Data and non-data descriptors differ in how overrides are calculated with respect to
+entries in an instance's dictionary. If an instance's dictionary has an entry with the
+same name as a data descriptor, the data descriptor takes precedence.
+If an instance's dictionary has an entry with the same name as a non-data descriptor,
+the dictionary entry takes precedence.</p>
+<p>It's very important to understand such behavior and I'll try to explain with examples.</p>
+<p>Let's first define a descriptor.</p>
+</div>
+<div class="section" id="descriptor-examples">
+<h2>Descriptor Examples</h2>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># example1.py</span>
+<span class="k">class</span> <span class="nc">Name</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting attribute&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">(</span><span class="s1">&#39;Shanyun&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">first_name</span>
+
+<span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">i</span> <span class="n">example1</span><span class="o">.</span><span class="n">py</span>
+<span class="n">getting</span> <span class="n">attribute</span>
+<span class="s1">&#39;Shanyun&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</blockquote>
+<p>Since <cite>Name</cite> only has <cite>__get__()</cite> method, it is a non-data descriptor.
+Retrieving the <cite>first_name</cite> attribute will invoke its <cite>__get__()</cite> method. But
+notice that the attribute is not on object's dictionary. To put it simply, <cite>first_name</cite>
+which is not an instance attribute, can be accessed like an instance attribute.
+We just managed to own &quot;.&quot; operator.</p>
+<p>Let's then modify <cite>Person</cite> a little bit.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># example2.py</span>
+<span class="k">class</span> <span class="nc">Name</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting attribute&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">(</span><span class="s1">&#39;Shanyun&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Shanyun&#39;</span><span class="p">)</span>
+
+<span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">i</span> <span class="n">example2</span><span class="o">.</span><span class="n">py</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">first_name</span>
+<span class="s1">&#39;Shanyun&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="p">{</span><span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Shanyun&#39;</span><span class="p">}</span>
+</pre></div>
+</blockquote>
+<p>Notice the difference? Yes, <cite>__get__()</cite> was not invoked, but why?</p>
+<p>The override rule states that &quot;if an instance's dictionary has an entry with
+the same name as a non-data descriptor, the <strong>dictionary entry</strong> takes precedence&quot;.
+As a result, although <cite>first_name</cite> is properly created as a non-data descriptor,
+it is masked by setting it as an instance attribute.</p>
+<p>Let's add a <cite>__set__()</cite> method to make it a data descriptor and see what
+would happen.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># example3.py</span>
+<span class="k">class</span> <span class="nc">Name</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting attribute&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;setting attribute&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># name attribute should be a string</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected an string&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>         <span class="c1"># name attribute string should all be letters</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Invalid name, make sure all characters are letters.&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;No!&#39;</span><span class="p">)</span>     <span class="c1"># no one care to delete an attribute</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">(</span><span class="s1">&#39;Shanyun&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+
+<span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">i</span> <span class="n">example3</span><span class="o">.</span><span class="n">py</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">first_name</span>
+<span class="n">getting</span> <span class="n">attribute</span>
+<span class="s1">&#39;Shanyun&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</blockquote>
+<p>You got it. Data descriptor overrides instance attribute.</p>
+<p>Now the example at the beginning with &quot;code repetition&quot; problem can be resolved
+by the power of descriptor.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># example4.py</span>
+<span class="k">class</span> <span class="nc">Name</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting attribute&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;setting attribute&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected an string&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Invalid name, make sure all characters are letters.&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;No!&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">()</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Shanyun&#39;</span><span class="p">,</span> <span class="s1">&#39;Gao&#39;</span><span class="p">)</span>
+
+<span class="err">$</span> <span class="n">python3</span> <span class="o">-</span><span class="n">i</span> <span class="n">example3</span><span class="o">.</span><span class="n">py</span>
+<span class="n">setting</span> <span class="n">attribute</span>
+<span class="n">setting</span> <span class="n">attribute</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">first_name</span>
+<span class="n">getting</span> <span class="n">attribute</span>
+<span class="s1">&#39;Shanyun&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">last_name</span>
+<span class="n">getting</span> <span class="n">attribute</span>
+<span class="s1">&#39;Gao&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">&#39;Sam&#39;</span>
+<span class="n">setting</span> <span class="n">attribute</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">first_name</span>
+<span class="n">getting</span> <span class="n">attribute</span>
+<span class="s1">&#39;Sam&#39;</span>
+</pre></div>
+</blockquote>
+<p>Cool? Cool! By now you should understand the descriptors' override behavior.
+Let's take a look at a real world example.</p>
+</div>
+<div class="section" id="real-world-usage">
+<h2>Real World Usage</h2>
+<p>Descriptors can be found in a lot of libraries. I'm going to list one
+that I read recently: <a class="reference external" href="https://github.com/kennethreitz/tablib">Tablib</a> made by Kenneth Reitz.</p>
+<p>Tablib is a tabular dataset library which is capable of outputing dataset
+in formats of Excel, CSV, YAML, JSON and so fourth. The following snippet
+is from the library's most important class <cite>Dataset</cite>.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="c1"># ... omit the rest of the class definition</span>
+    <span class="c1">#</span>
+
+<span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The number of rows currently in: class: &#39;Dataset&#39;.</span>
+<span class="sd">       Cannot be directly modified.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+</pre></div>
+</blockquote>
+<p>Should you not familiar with syntax <cite>&#64;property</cite>, it is the way to invoke Python
+decorators. You may want to read this <a class="reference external" href="https://realpython.com/blog/python/primer-on-python-decorators/">article</a> for a
+brief and very useful introduction. To explain in one sentence,
+putting <cite>&#64;property</cite> above <cite>height</cite> method results in:
+<cite>height = property(height)</cite>.</p>
+<p>In Python, <cite>property()</cite> is a built-in function that creates and returns a property
+object. Its signature is:</p>
+<p><cite>property(fget=None,fset=None,fdel=None,doc=None)</cite>.</p>
+<p>Calling <cite>property()</cite> is a succinct way to build a <strong>data descriptor</strong>.
+In the above example,
+<cite>height(self)</cite> is <cite>fget</cite> which can be considered as <cite>__get__()</cite> method.
+As a result, we can access instance attribute <cite>height by calling `Dataset().height</cite>.
+It's worth noting <cite>height</cite> is not settable, which provides advantages of
+immutability and always being current.</p>
+<p>We again owns the &quot;.&quot; by implementing descriptor.</p>
+<p>Here is another snippet within class <cite>Dataset</cite>.</p>
+<blockquote>
+<div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">_register_formats</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds format properties.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="n">formats</span><span class="o">.</span><span class="n">available</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">import_set</span><span class="p">))</span>   <span class="c1">#attention to this statement</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;get_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;set_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">import_set</span><span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_formats</span><span class="p">[</span><span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">import_set</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">))</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;get_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_formats</span><span class="p">[</span><span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">export_set</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_formats</span><span class="p">[</span><span class="n">fmt</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+ <span class="c1">#</span>
+ <span class="c1"># ... skip more definitions ...</span>
+ <span class="c1">#</span>
+
+ <span class="nd">@property</span>
+ <span class="k">def</span> <span class="nf">tsv</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;skip descriptive docstring&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</blockquote>
+<p>What happened here is that Tablib places all file formatting routines in the <cite>formats</cite>
+subpackage. This structure makes the main <cite>core.py</cite> module cleaner
+(similar to the above example, avoid code repetition) and the
+entire package modular -- it's easy to add new file formats.</p>
+<p>The <cite>&#64;classmethod</cite> symbol is also a decorator which modifies the method <cite>_register_formats()</cite>
+so that is passes the object's class (Dataset) rather than its instance (self) as
+its first argument.</p>
+<p>In the commented line, <cite>setattr</cite> assigns a value to the attribute named
+<cite>fmt.title</cite> (e.g. Dataset.csv, Dataset.xls). The value it assigns
+urns <cite>Datset.csv</cite> into a <em>property</em>.
+As a result, we can access CSV and YAML formats like <cite>Dataset().height</cite> --
+by calling a function that generates the result from the stored data or parses the
+input format and then replaces the core data. But, there is only one dataset which is
+good because no extra space is required and no need to concern about littering data
+within the library.</p>
+<p>I hope you find this article to be more useful than confusing. FYI,
+Raymond Hettinger also
+has a wonderful document on descriptors, I strongly recommend <a class="reference external" href="https://docs.python.org/3/howto/descriptor.html">reading it</a>.</p>
+<hr class="docutils" />
+<!-- Reference -->
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[*]</a></td><td><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#implementing-descriptors">Data Model</a></td></tr>
+</tbody>
+</table>
+<!-- Links -->
+</div>
+
+
+                
+                <!-- Add the gallery as the end of the article -->
+
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/2017Jul/powerful-powerful-descriptors-of-python.html">posted at 14:59</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/blog.html" rel="tag">Blog</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/python.html" class="tags">Python</a>
+                    &nbsp;<a href="/tag/descriptors.html" class="tags">Descriptors</a>
+                    &nbsp;<a href="/tag/meta-programming.html" class="tags">Meta-Programming</a>
+                </div>
+
+        <!--
+        //-->
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+
+    <!-- How to make the gallery lightbox 
+    https://github.com/getpelican/pelican-plugins/tree/master/photos
+    //-->
+    
+</body>
+</html>
