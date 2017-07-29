@@ -14,7 +14,6 @@
     <!-- How to make the gallery lightbox 
     https://github.com/getpelican/pelican-plugins/tree/master/photos
     //-->
-	<link rel="stylesheet" href="/theme/css/magnific-popup.css" type="text/css" />
     
     <meta name="generator" content="Pelican" />
     <meta name="description" content="" />
@@ -79,6 +78,32 @@
 
     <div id="wrapper">
         <div id="content">
+            <h4 class="date">Jun 01, 2017</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/2017Jun/pythonintrospection.html" rel="bookmark" title="Permanent Link to &quot;Python Tricks -- Introspection&quot;">Python Tricks -- Introspection</a>
+                </h2>
+
+                
+                
+
+        <strong><p class="first last">Everything in Python is an object and take advantage of it.</p>
+</strong>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/2017Jun/pythonintrospection.html">posted at 17:43</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/blog.html" rel="tag">Blog</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/python.html" class="tags">Python</a>
+                    &nbsp;<a href="/tag/programming.html" class="tags">Programming</a>
+                </div>
+        <!--
+		<a href="/2017Jun/pythonintrospection.html#disqus_thread">Click to read and post comments</a>
+        //-->
+            </article>
+
             <h4 class="date">May 26, 2017</h4>
 
             <article class="post">
@@ -318,33 +343,6 @@ fun, entertaining, unexpected and lively.</p>
         //-->
             </article>
 
-            <h4 class="date">May 18, 2017</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="/2017May/baidu's-robin-and-alibaba's-jack.html" rel="bookmark" title="Permanent Link to &quot;Baidu's Robin and Alibaba's Jack&quot;">Baidu's Robin and Alibaba's Jack</a>
-                </h2>
-
-                
-                
-
-        <strong><p class="first last">A language that doesn't affect the way you think about programming,
-is not worth knowing. -- Alan Perlis</p>
-</strong>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="/2017May/baidu's-robin-and-alibaba's-jack.html">posted at 15:29</a>
-                    &nbsp;&middot;&nbsp;<a href="/category/blog.html" rel="tag">Blog</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="/tag/culture.html" class="tags">Culture</a>
-                    &nbsp;<a href="/tag/language.html" class="tags">Language</a>
-                </div>
-        <!--
-		<a href="/2017May/baidu's-robin-and-alibaba's-jack.html#disqus_thread">Click to read and post comments</a>
-        //-->
-            </article>
-
 
                 <div class="clear"></div>
                 <div class="pages">
@@ -368,30 +366,6 @@ is not worth knowing. -- Alan Perlis</p>
     <!-- How to make the gallery lightbox 
     https://github.com/getpelican/pelican-plugins/tree/master/photos
     //-->
-    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <!-- Magnific Popup core JS file -->
-    <script src="/theme/js/jquery.magnific-popup.js"></script>
-    <script>
-    $('.gallery').magnificPopup({
-        delegate: 'a',
-        type: 'image',
-        gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [1,2]
-        },
-        image: {
-            titleSrc: function(item) {
-                if (item.el.attr('caption') && item.el.attr('exif')) {
-                    return (item.el.attr('caption').replace(/\\n/g, '<br />') +
-                        '<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
-                }
-            return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
-        } }
-    });
-    </script>
     
 </body>
 </html>
